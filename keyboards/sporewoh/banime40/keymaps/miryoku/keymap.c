@@ -1,0 +1,57 @@
+#include QMK_KEYBOARD_H
+
+enum layers {
+    BASE,
+    NAV,
+    NUM,
+    SYM,
+    FUN,
+    MEDIA
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    // Standard Miryoku with 3+3 thumb keys
+    // Left thumbs:  ESC/Media, Space/Nav, Tab/Nav
+    // Right thumbs: Enter/Sym, Bksp/Num, Del/Fun
+    [BASE] = LAYOUT_ortho_4x10(
+        KC_Q,         KC_W,         KC_F,         KC_P,         KC_B,         KC_J,         KC_L,         KC_U,         KC_Y,         KC_QUOT,
+        LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), KC_G,         KC_M,         RSFT_T(KC_N), RCTL_T(KC_E), LALT_T(KC_I), RGUI_T(KC_O),
+        KC_Z,         RALT_T(KC_X), KC_C,         KC_D,         KC_V,         KC_K,         KC_H,         KC_COMM,      RALT_T(KC_DOT), KC_SLSH,
+        KC_NO,        KC_NO,        LT(MEDIA,KC_ESC), LT(NAV,KC_SPC), LT(NAV,KC_TAB), LT(SYM,KC_ENT), LT(NUM,KC_BSPC), LT(FUN,KC_DEL), KC_NO, KC_NO
+    ),
+    
+    [NAV] = LAYOUT_ortho_4x10(
+        QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   C(KC_Y), C(KC_C), C(KC_X), C(KC_V), C(KC_Z),
+        KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_NO,   KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
+        KC_NO,   KC_RALT, KC_NO,   KC_NO,   KC_NO,   KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+        KC_NO,   KC_NO,   KC_NO,   KC_TRNS, KC_TRNS, KC_ENT,  KC_BSPC, KC_DEL,  KC_NO,   KC_NO
+    ),
+    
+    [NUM] = LAYOUT_ortho_4x10(
+        KC_LBRC, KC_7,    KC_8,    KC_9,    KC_RBRC, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_SCLN, KC_4,    KC_5,    KC_6,    KC_EQL,  KC_NO,   KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_BSLS, KC_NO,   KC_NO,   KC_NO,   KC_RALT, KC_NO,
+        KC_NO,   KC_NO,   KC_DOT,  KC_0,    KC_MINS, KC_NO,   KC_TRNS, KC_TRNS, KC_NO,   KC_NO
+    ),
+    
+    [SYM] = LAYOUT_ortho_4x10(
+        KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS, KC_NO,   KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
+        KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE, KC_NO,   KC_NO,   KC_NO,   KC_RALT, KC_NO,
+        KC_NO,   KC_NO,   KC_LPRN, KC_RPRN, KC_UNDS, KC_TRNS, KC_NO,   KC_NO,   KC_NO,   KC_NO
+    ),
+    
+    [FUN] = LAYOUT_ortho_4x10(
+        KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_F11,  KC_F4,   KC_F5,   KC_F6,   KC_SCRL, KC_NO,   KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI,
+        KC_F10,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS, KC_NO,   KC_NO,   KC_NO,   KC_RALT, KC_NO,
+        KC_NO,   KC_NO,   KC_APP,  KC_SPC,  KC_TAB,  KC_NO,   KC_NO,   KC_TRNS, KC_NO,   KC_NO
+    ),
+    
+    [MEDIA] = LAYOUT_ortho_4x10(
+        QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_NO,   KC_NO,   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+        KC_NO,   KC_RALT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_BRID, KC_BRIU, KC_NO,   KC_NO,
+        KC_NO,   KC_NO,   KC_TRNS, KC_NO,   KC_NO,   KC_MSTP, KC_MPLY, KC_MUTE, KC_NO,   KC_NO
+    )
+};
